@@ -10,14 +10,14 @@ if(!filename){
 net.createServer(connection=>{
     //Reporting
     console.log('Subcriber connected.');
-    connection.write(JSON.stringify({type:'watching',file:filename})+`/n`);
+    connection.write(`Now watching "${filename}"for changes /n`);
 
     //Watcher setup
-    const watcher = fs.watch(filename,()=>connection.write(JSON.stringify({tpe:'changed',timestamp: Date.now()})+`/n`));
+    const watcher = fs.watch(filename,()=>connection.write(`File changed: ${new Date()}/n`));
 
     //Cleanup
     connection.on('close',()=>{
         console.log('Subscriber diconnected');
         watcher.close();
     });
-}).listen(60300,()=>console.log('Listening for subscriber...'));
+}).listen('/tmp/watcher.sock', () => console.log('Listening for subscribers...'));
