@@ -8,4 +8,8 @@ Para probar el fichero anterior se ha de ejecutar distintos comandos en varias c
 
 //Foto
 
-Para mejorar nuestras funcionalidades, hacer casos de prueba y además ser capaces de dar una mayor versatilidad a nuestro código utilizaremos los ficheros JSON de manera que se puedan comunicar mejor cada uno de los extremos de la comunicación. Para ello tendremos que tener en cuenta que un fichero JSOn está compuesto por distintos pares de valores key-value. En nuestro caso se corresponden dos tipos de mensajes los de esperando por conexión y los de cambio de fichero. 
+Para mejorar nuestras funcionalidades, hacer casos de prueba y además ser capaces de dar una mayor versatilidad a nuestro código utilizaremos los ficheros JSON de manera que se puedan comunicar mejor cada uno de los extremos de la comunicación. Para ello tendremos que tener en cuenta que un fichero JSOn está compuesto por distintos pares de valores key-value. En nuestro caso se corresponden dos tipos de mensajes los de esperando por conexión y los de cambio de fichero. Usando el *JSON.stringify* podemos enviar por el socket el tipo de paquete JSON de una manera sencilla como se ve en el fichero net-watcher. Y nos da un resultado como este:
+
+//foto
+
+En el fichero net-watcher-client en su primera versión podemos observar como crea una conexión a un servidor por medio del connect del paquete 'net'. Además también se usa el *JASON.parse para descifrar el mensaje cada vez que llega un evento del tipo 'data'. 
