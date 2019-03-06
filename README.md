@@ -13,3 +13,6 @@ Para mejorar nuestras funcionalidades, hacer casos de prueba y además ser capac
 //foto
 
 En el fichero net-watcher-client en su primera versión podemos observar como crea una conexión a un servidor por medio del connect del paquete 'net'. Además también se usa el *JASON.parse para descifrar el mensaje cada vez que llega un evento del tipo 'data'. 
+
+Este fichero tiene problemas como que se asume que todo el mensaje llegará en un chunk de datos por lo que puede traer grandes problemas en un estado normal de aplicación de red. Para ello, se nos sugiere que creemos una extensión de la clase eventEmitter en una carpeta que por convenio se llama lib. Para ello usaremos la herencia y extenderemos la clase evenEmitter e implementaremos un método para unir todos los mensajes de manera que se espere al retorno de carro para enviar el mensaje entero. Además mediante el *module.exports*  se puede acceder al código de una manera muy sencilla. El código se encuentra en la clase net-watcher-ldj-client.js donde se ve en detalle el método usado. 
+
