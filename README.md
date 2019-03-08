@@ -6,15 +6,17 @@ En el fichero net-watcher.js que se encuentra dentro de la carpeta networking ve
 
 Para probar el fichero anterior se ha de ejecutar distintos comandos en varias consolas. Con el comando *watch -n 5 touch target.txt* donde el número signigica cada cuanto tiempo se ha de esperar para hacer el comando touch sobre el fichero target.txt. En otra consola deberemos ejecutar nuestro servidor que nos proporcionará el servicio. Mientras que con el comando *nc localhost 60300* nos conectaremos como clientes, el nc es un programa de utilidad de sockets mientras que se le especifica la dirección de conexión con el puerto al que nos queremos conectar. En el caso de no tener la utilidad de nc se podrría usar la utilidad de *telnet*. 
 
-//Foto
+![algo](pictures/1.png);
 
 Para mejorar nuestras funcionalidades, hacer casos de prueba y además ser capaces de dar una mayor versatilidad a nuestro código utilizaremos los ficheros JSON de manera que se puedan comunicar mejor cada uno de los extremos de la comunicación. Para ello tendremos que tener en cuenta que un fichero JSOn está compuesto por distintos pares de valores key-value. En nuestro caso se corresponden dos tipos de mensajes los de esperando por conexión y los de cambio de fichero. Usando el *JSON.stringify* podemos enviar por el socket el tipo de paquete JSON de una manera sencilla como se ve en el fichero net-watcher. Y nos da un resultado como este:
 
-//foto
+![algo](pictures/2.png)
 
 En el fichero net-watcher-client en su primera versión podemos observar como crea una conexión a un servidor por medio del connect del paquete 'net'. Además también se usa el *JASON.parse para descifrar el mensaje cada vez que llega un evento del tipo 'data'. 
 
 Este fichero tiene problemas como que se asume que todo el mensaje llegará en un chunk de datos por lo que puede traer grandes problemas en un estado normal de aplicación de red. Para ello, se nos sugiere que creemos una extensión de la clase eventEmitter en una carpeta que por convenio se llama lib. Para ello usaremos la herencia y extenderemos la clase evenEmitter e implementaremos un método para unir todos los mensajes de manera que se espere al retorno de carro para enviar el mensaje entero. Además mediante el *module.exports*  se puede acceder al código de una manera muy sencilla. El código se encuentra en la clase net-watcher-ldj-client.js donde se ve en detalle el método usado. 
+
+![algo](pictures/3.png)
 
 ## Versioning
 
@@ -26,12 +28,14 @@ A la hora de crear pruebas con Mocha para testear nuestro código, la herramient
 
 El comando npm -y crea el fichero package.json y al ejecutar el npm install --save-dev y la version y nombre de lo que queramos instalar se añadirá a la lista de dependencias necesarias para desarrollar. Luego, introduciedo en el fichero package.json en el apartado de script se añade *"test" : "mocha"* de manera que al ejecutar npm test se ejecuta el mocha. 
 
+![algo](pictures/4.png)
+
 ## Testability
 
 Para mejorar las pruebas que se van a aplicar hemos de modificar nuestro fichero de pruebas ldj. Para asegurar que un mensaje puede llegar en múltiples data vamos a modificar un it y vamos a enviar el mensaje en tres partes distintas para probar que nuestra librería los agrupa de manera correcta.Esta modificación la haremos en el ldj-client-test.js. 
 A la hora de cambiar el fichero para asegurar que lanze una exepción, desde la primera ejecución del test se aprueba porque aunque no haya un throw por el stream definido a null si la hay cuando se intenta iniciar un listener a un null. De todas maneras por mentener la corrección se añade al constructor una comprobación para asegurar que el stream pasado no es nulo. La comprobación que estaba haciendo todo correcto en la primera ejecución se puede observar en la siguiente foto que por medio del assert.NotThrowException de manera que al lanzar una excepción nos la mostrará. 
 
-//Foto
+![algo](pictures/5.png)
 
 ## Robutness
 
@@ -39,4 +43,4 @@ En nuestro programa siguen habiendo grandes problemas de robustez, en el caso de
 
 En el caso de que el mensaje llegue sin un salto de linea no entrará dentro del bucle while ya que no encontrará nunca el salto de línea que está esperando. Pero a la señal de close entrará en el listener de close que manejará el mensaje JSON en caso de que este el cierre del parentesis. El cliente si debería enviar un mensaje de close a sus listener pero después de haber recibido un mensaje de close por parte del servidor. 
 
-//Picture
+![algo](pictures/6.png)
