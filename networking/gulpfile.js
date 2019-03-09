@@ -8,4 +8,4 @@ gulp.task('serve',shell.task("nodemon test-json-service.js target.txt"));
 gulp.task('watch',shell.task("watch -n 5 touch target.txt"));
 gulp.task('nc',shell.task("nc localhost 60300"));
 gulp.task('net',shell.task("nodemon net-watcher.js target.txt"));
-gulp.task('documentation',shell.task("documentation build handler.js -f md > handler.md"));
+gulp.task('documentation',shell.task("documentation build -f md > documentation.md"));
