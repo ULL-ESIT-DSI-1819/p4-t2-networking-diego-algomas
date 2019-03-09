@@ -1,3 +1,8 @@
+
+/**
+ * Server through unix socket
+ * @name net-watcher-unix.js
+ */
 'use strict'
 
 const fs = require('fs');

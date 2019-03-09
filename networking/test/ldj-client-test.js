@@ -1,3 +1,7 @@
+/**
+ * Mocha test
+ * @name ldj-client-test.js
+ */
 'use strict';
 const assert = require('assert');
 const EventEmitter = require('events').EventEmitter;

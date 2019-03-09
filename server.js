@@ -1,3 +1,8 @@
+/**
+ * Basic empty server
+ * @name server.js
+ */
+
 "use strict"
 const net = require('net');
 /**    

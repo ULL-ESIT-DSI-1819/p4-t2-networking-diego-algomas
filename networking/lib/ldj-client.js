@@ -1,3 +1,7 @@
+/**
+ * Module to decode JSON packages
+ * @name ldj-client.js
+ */
 'use strict';
 const EventEmitter = require('events').EventEmitter;
 /**    

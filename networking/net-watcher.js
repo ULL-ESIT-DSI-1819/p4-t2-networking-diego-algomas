@@ -1,3 +1,7 @@
+/**
+ * Basic server
+ * @name net-watcher.js
+ */
 'use strict'
 
 const fs = require('fs');

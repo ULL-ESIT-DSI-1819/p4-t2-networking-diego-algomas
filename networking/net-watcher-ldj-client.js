@@ -1,5 +1,7 @@
-
-
+/**
+ * Create a ldj client
+ * @name net-watcher-ldj-client.js
+ */
 'use strict'
 const netClient = require('net').connect({port: 60300});
 const ldjClient = require('./lib/ldj-client.js').connect(netClient);

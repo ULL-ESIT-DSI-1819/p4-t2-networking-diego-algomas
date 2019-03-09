@@ -44,3 +44,11 @@ En nuestro programa siguen habiendo grandes problemas de robustez, en el caso de
 En el caso de que el mensaje llegue sin un salto de linea no entrará dentro del bucle while ya que no encontrará nunca el salto de línea que está esperando. Pero a la señal de close entrará en el listener de close que manejará el mensaje JSON en caso de que este el cierre del parentesis. El cliente si debería enviar un mensaje de close a sus listener pero después de haber recibido un mensaje de close por parte del servidor. 
 
 ![algo](pictures/6.png)
+
+## Travis
+
+También hemos añadido la integración continua usando Travis
+
+[![Build Status](https://travis-ci.org/ULL-ESIT-DSI-1819/p4-t2-networking-diego-algomas.svg?branch=master)](https://travis-ci.org/ULL-ESIT-DSI-1819/p4-t2-networking-diego-algomas)
+
+![algo](pictures/7.png)

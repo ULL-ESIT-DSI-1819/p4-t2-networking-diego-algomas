@@ -1,3 +1,8 @@
+
+/**
+ * Simulate the messages to test a client
+ * @name test-json-service.js
+ */
 'use strict';
 /**
  * Create a simulation of a server
