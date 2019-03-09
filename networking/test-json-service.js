@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * Create a simulation of a server
+ * @param function Emits the server messages and states
+ */
 const server = require('net').createServer(connection => {
   console.log('Subscriber connected.');
 
@@ -21,7 +25,11 @@ const server = require('net').createServer(connection => {
     console.log('Subscriber disconnected.');
   });
 });
-
+/**
+ * Listen for a connection
+ * @param port Port in which have to listen
+ * @param function Emits the server messages and states
+ */
 server.listen(60300, function() {
   console.log('Test server listening for subscribers...');
 });

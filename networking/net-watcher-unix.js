@@ -7,6 +7,10 @@ const filename = process.argv[2];
 if(!filename){
     throw Error('Error: No filename specified');
 }
+/**
+ * Create a server
+ * @param function Emits the server messages and states
+ */
 net.createServer(connection=>{
     //Reporting
     console.log('Subcriber connected.');
@@ -20,4 +24,10 @@ net.createServer(connection=>{
         console.log('Subscriber diconnected');
         watcher.close();
     });
-}).listen('/tmp/watcher.sock', () => console.log('Listening for subscribers...'));
+})
+/**
+ * Create a listener on a unix file
+ * @param filename Name of the file expected
+ * @param function message shown
+ */
+.listen('/tmp/watcher.sock', () => console.log('Listening for subscribers...'));

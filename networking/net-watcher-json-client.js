@@ -1,6 +1,11 @@
 ​ 	​'use strict'​;
 ​ 	​const​ net = require(​'net'​);
 ​ 	​const​ client = net.connect({port: 60300});
+/**
+ * This create a listener for data waiting a JSON file
+ * @param event event type expected
+ * @param function Parse the JSON files and show the correct message
+ */
 ​ 	client.on(​'data'​, data => {
 ​ 	  ​const​ message = JSON.parse(data);
 ​ 	  ​if​ (message.type === ​'watching'​) {
